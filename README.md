@@ -3,7 +3,7 @@
 
 Dự án gồm **Backend (Node.js/Express)** và **Frontend (Next.js App Router)** đã cấu hình sẵn để kết nối với nhau qua JWT.
 
-> Gợi ý cổng dùng trong tài liệu: **Backend = 5050**, **Frontend = 3000**.
+
 
 ---
 
@@ -163,19 +163,7 @@ cp .env.local.example .env.local
 # NEXT_PUBLIC_API_BASE=http://localhost:5050/api
 ```
 
-> **Tuỳ chọn (proxy, đỡ lo CORS):** sửa `next.config.js`
-```js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  async rewrites() {
-    return [{ source: '/api/:path*', destination: 'http://localhost:5050/api/:path*' }];
-  },
-};
-module.exports = nextConfig;
-```
-và đặt `.env.local`:
-```
-NEXT_PUBLIC_API_BASE=/api
+
 ```
 
 ### 4.2 Cài đặt & chạy
@@ -205,43 +193,11 @@ npm run dev
 
 ---
 
-## 6) Troubleshooting (hay gặp)
 
-- **EADDRINUSE: cổng bận**  
-  Đổi `PORT` trong backend (vd: 5050) và cập nhật `NEXT_PUBLIC_API_BASE` tương ứng.  
-  Khởi động lại cả backend và frontend sau khi đổi.
-
-- **Không thể kết nối server / Network Error**  
-  - Backend có chạy và log `[API] listening on http://localhost:5050` chưa?  
-  - `http://localhost:5050/api/health` có trả `{"status":"ok"}` không?  
-  - `.env.local` frontend đã đúng và **restart** `npm run dev` sau khi chỉnh?
-
-- **401 khi đăng nhập**  
-  Chưa có user hoặc sai mật khẩu → tạo admin theo mục 3.5.
-
-- **Lỗi CORS trên trình duyệt**  
-  - Backend đã `app.use(cors())`.  
-  - Hoặc dùng **proxy rewrites** trong Next.js (mục 4.1).
-
-- **MongoDB không chạy**  
-  - Homebrew: `brew services start mongodb-community`  
-  - Docker: `docker run -d --name mongo -p 27017:27017 mongo:7`
-
-- **11000 duplicate key (studentCode)**  
-  `studentCode` là unique. Đổi mã SV khác hoặc xoá bản ghi trùng.
 
 ---
 
-## 7) Mở rộng gợi ý
-- Phân quyền UI theo `role` (ẩn/xám hoá nút xoá với `staff`).
-- Import/Export CSV.
-- Upload ảnh thẻ SV (S3/Cloudinary).
-- Audit log lịch sử chỉnh sửa.
-- Validate form (Yup/React Hook Form) + toast thông báo.
-
----
-
-## 8) Lệnh nhanh tổng hợp
+## 6) Lệnh nhanh tổng hợp
 
 ```bash
 # Backend
