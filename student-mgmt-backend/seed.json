@@ -1,0 +1,20 @@
+[
+  {
+    "studentCode": "SV001",
+    "fullName": "Nguyen Van A",
+    "dob": "2004-05-10",
+    "gender": "male",
+    "email": "a@example.com",
+    "phone": "0900000001",
+    "address": "Hanoi"
+  },
+  {
+    "studentCode": "SV002",
+    "fullName": "Tran Thi B",
+    "dob": "2003-09-21",
+    "gender": "female",
+    "email": "b@example.com",
+    "phone": "0900000002",
+    "address": "HCMC"
+  }
+]
